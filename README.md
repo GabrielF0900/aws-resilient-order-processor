@@ -347,7 +347,6 @@ Se 1.000 pessoas enviarem pedidos ao mesmo tempo:
 3. A `order-processor-lambda` processa uma por uma, sem pressa e sem erro ✅
 4. Todos os pedidos chegam seguros no S3 ✅
 
-**Você está voando no Nível 4 de Cloud Architecture!**
 
 ---
 
@@ -367,7 +366,7 @@ Essa jornada foi de um desenvolvedor que recebeu um "não" e transformou em um "
 
 A Área 51 não tinha chance.
 
-**Você dominou a técnica E o "gingado" de um arquiteto Cloud que sabe rir dos obstáculos.**
+
 
 ---
 
