@@ -17,7 +17,7 @@ Spoiler: Funcionou.
 
 ### 1️⃣ Acessando o Console AWS (A Porta de Entrada)
 
-![Página Principal da AWS](pagina-principal-1.jpeg)
+![\](assets/pagina-principal-1.jpeg)
 
 *Aqui começou tudo. O console AWS. Simples, poderoso, e cheio de possibilidades.*
 
@@ -27,7 +27,7 @@ Spoiler: Funcionou.
 
 Primeiro, fomos para o serviço de armazenamento S3 onde criamos nosso bucket digital:
 
-![Página Principal do S3](pagina-principal-s3-2.jpeg)
+![\](assets/pagina-principal-s3-2.jpeg)
 
 *A página principal do S3. Tranquilo, sereno... antes da tempestade.*
 
@@ -37,7 +37,7 @@ Primeiro, fomos para o serviço de armazenamento S3 onde criamos nosso bucket di
 
 Aqui, colocamos o nome **`lab-pedido-processado-gabriel`** no nosso futuro cofre de dados:
 
-![Configuração do S3](configuracao-do-s3-3.jpeg)
+![\](assets/configuracao-do-s3-3.jpeg)
 
 *Nome estabelecido. Ego alimentado. Vamos em frente.*
 
@@ -47,7 +47,7 @@ Aqui, colocamos o nome **`lab-pedido-processado-gabriel`** no nosso futuro cofre
 
 Bloqueamos **todos os acessos externos** porque ninguém quer ter sua arquitetura vazada para a internet. Segurança em primeiro lugar, mesmo que seja só para teste:
 
-![Bloqueando Acessos S3](bloqueando-acessos-s3-4.jpeg)
+![\](assets/bloqueando-acessos-s3-4.jpeg)
 
 *"Deixem todos fora, mas eu entro." - Configuração de bloqueio ativada.*
 
@@ -57,7 +57,7 @@ Bloqueamos **todos os acessos externos** porque ninguém quer ter sua arquitetur
 
 E assim, nosso S3 foi criado com sucesso:
 
-![S3 Criado](s3-criado-5.jpeg)
+![\](assets/s3-criado-5.jpeg)
 
 *Boom. Um bucket. Pronto para guardar nossos preciosos pedidos.*
 
@@ -69,7 +69,7 @@ E assim, nosso S3 foi criado com sucesso:
 
 Seguimos para o Amazon SQS, o "amortecedor de mensagens" da arquitetura:
 
-![Página Principal SQS](pagina-inicial-SQS-6.jpeg)
+![\](assets/pagina-inicial-SQS-6.jpeg)
 
 *Local onde a mágica do desacoplamento acontece.*
 
@@ -79,7 +79,7 @@ Seguimos para o Amazon SQS, o "amortecedor de mensagens" da arquitetura:
 
 Criamos nossa fila com o nome **`fila-pedidos`** e deixamos as configurações como padrão:
 
-![Configuração SQS](configuracao-do-sqs-7.jpeg)
+![\](assets/configuracao-do-sqs-7.jpeg)
 
 *Configuração simples. SQS gosta assim. Sem drama.*
 
@@ -89,7 +89,7 @@ Criamos nossa fila com o nome **`fila-pedidos`** e deixamos as configurações c
 
 Nossa `fila-pedidos` foi criada com sucesso. Agora temos um lugar seguro para armazenar as mensagens:
 
-![SQS Criado](sqs-criado-8.jpeg)
+![\](assets/sqs-criado-8.jpeg)
 
 *Uma fila vazia é uma fila com potencial.*
 
@@ -101,7 +101,7 @@ Nossa `fila-pedidos` foi criada com sucesso. Agora temos um lugar seguro para ar
 
 Aqui é onde a diversão começa. Fomos para o Lambda e começamos nossa revolução:
 
-![Página Inicial Lambda](pagina-inicial-lambda-9.jpeg)
+![\](assets/pagina-inicial-lambda-9.jpeg)
 
 *A terra prometida dos "serverless architects".*
 
@@ -115,7 +115,7 @@ Enfrentamos um problema: **A Escola da Nuvem bloqueou o API Gateway**. Sua respo
 
 Criei a função `order-producer-lambda` em Node.js 24.x com arquitetura x86_64:
 
-![Lambda Producer](lambda-producer-10.jpeg)
+![\](assets/lambda-producer-10.jpeg)
 
 *Apresento: a função receptora que enganaria os sistemas de restrição da escola.*
 
@@ -125,7 +125,7 @@ Criei a função `order-producer-lambda` em Node.js 24.x com arquitetura x86_64:
 
 Como o IAM oficial estava bloqueado, usei a tática da `LabRole` - a mesma que utilizei em projetos anteriores:
 
-![Lambda Producer LabRole](lambda-producer-LabRole-11.jpeg)
+![\](assets/lambda-producer-LabRole-11.jpeg)
 
 *"Tecnicamente eu não estou burlando a segurança... estou usando a segurança que me foi dada 😎"*
 
@@ -135,7 +135,7 @@ Como o IAM oficial estava bloqueado, usei a tática da `LabRole` - a mesma que u
 
 Aqui está o segredo. Ativei a **Function URL** da Lambda com modo de invocação **BUFFERED** e autenticação **NONE**:
 
-![Lambda URL Parte 1](lambda-producer-URL-12.jpeg)
+![\](assets/lambda-producer-URL-12.jpeg)
 
 *A configuração mágica. Deixe-me explicar:*
 
@@ -146,7 +146,7 @@ Aqui está o segredo. Ativei a **Function URL** da Lambda com modo de invocaçã
 
 ### 1️⃣3️⃣ Confirmação da URL da Função
 
-![Lambda URL Parte 2](lambda-producer-URL2-13.jpeg)
+![\](assets/lambda-producer-URL2-13.jpeg)
 
 *Endpoint público criado. A rebelião começou.*
 
@@ -154,7 +154,7 @@ Aqui está o segredo. Ativei a **Function URL** da Lambda com modo de invocaçã
 
 ### 1️⃣4️⃣ Lambda Producer Criada com Sucesso
 
-![Lambda Producer Criada](lambda-producer-criada-14.jpeg)
+![\](assets/lambda-producer-criada-14.jpeg)
 
 *Função criada. Role atribuída. Pronto para simular uma API.*
 
@@ -164,7 +164,7 @@ Aqui está o segredo. Ativei a **Function URL** da Lambda com modo de invocaçã
 
 Gerei um código que transforma a Lambda em uma API que envia requisições para o SQS:
 
-![Código Lambda Producer](codigo-lambda-producer-15.jpeg)
+![\](assets/codigo-lambda-producer-15.jpeg)
 
 *O código que simula um API Gateway. Criatividade at its finest.*
 
@@ -178,7 +178,7 @@ Aqui colocamos a URL da SQS para que as mensagens fossem roteadas corretamente p
 
 Agora criamos a função `order-processor-lambda`, nosso trabalhador incansável:
 
-![Lambda Processor](lambda-processor-16.jpeg)
+![\](assets/lambda-processor-16.jpeg)
 
 *Apresento: a função que acordaria quando o SQS batesse na porta.*
 
@@ -188,7 +188,7 @@ Agora criamos a função `order-processor-lambda`, nosso trabalhador incansável
 
 Novamente, a fiel `LabRole` foi acionada para dar permissões:
 
-![Lambda Processor LabRole](lambda-processor-LabRole-17.jpeg)
+![\](assets/lambda-processor-LabRole-17.jpeg)
 
 *Mesma tática, mesma eficácia.*
 
@@ -196,7 +196,7 @@ Novamente, a fiel `LabRole` foi acionada para dar permissões:
 
 ### 1️⃣8️⃣ Lambda Processor Criada
 
-![Lambda Processor Criada](lambda-processor-criada-18.jpeg)
+![\](assets/lambda-processor-criada-18.jpeg)
 
 *Processadora em posição. Aguardando ordens.*
 
@@ -206,7 +206,7 @@ Novamente, a fiel `LabRole` foi acionada para dar permissões:
 
 O momento crucial: conectamos a fila ao processador. Entramos na função, adicionamos um gatilho, selecionamos SQS, escolhemos `fila-pedidos` e criamos o gatilho:
 
-![Adicionando Gatilho](adicionando-gatilho-no-processor-19.jpeg)
+![\](assets/adicionando-gatilho-no-processor-19.jpeg)
 
 *Quando uma mensagem chega na fila, ela "belisca" a Lambda para acordar. Automático. Perfeito.*
 
@@ -214,7 +214,7 @@ O momento crucial: conectamos a fila ao processador. Entramos na função, adici
 
 ### 2️⃣0️⃣ Gatilho Criado com Sucesso
 
-![Gatilho Criado](gatilho-criado-20.jpeg)
+![\](assets/gatilho-criado-20.jpeg)
 
 *Trigger configurado. O fluxo está completo.*
 
@@ -224,7 +224,7 @@ O momento crucial: conectamos a fila ao processador. Entramos na função, adici
 
 Colocamos a configuração da fila SQS no código do processador:
 
-![Código Fila SQS](codigo-da-fila-sqs-21.jpeg)
+![\](assets/codigo-da-fila-sqs-21.jpeg)
 
 *A URL da SQS agora está integrada ao processador.*
 
@@ -234,7 +234,7 @@ Colocamos a configuração da fila SQS no código do processador:
 
 E aqui, colocamos o nome do bucket S3 para que o processador soubesse aonde enviar as mensagens:
 
-![Código Bucket S3](codigo-do-bucket-22.jpeg)
+![\](assets/codigo-do-bucket-22.jpeg)
 
 *Destino definido. O S3 aguarda.*
 
@@ -246,7 +246,7 @@ E aqui, colocamos o nome do bucket S3 para que o processador soubesse aonde envi
 
 Disparei um JSON via **POST** no Postman para o endpoint da Lambda Function URL e...
 
-![Comunicação Postman](comunicacao-feita-postman-23.jpeg)
+![\](assets/comunicacao-feita-postman-23.jpeg)
 
 **BINGO!** O status verde brilhou na tela. A requisição foi aceita, processada e enviada para a fila.
 
@@ -258,7 +258,7 @@ Disparei um JSON via **POST** no Postman para o endpoint da Lambda Function URL 
 
 Indo para o bucket S3, podemos ver os itens criados como mágica:
 
-![Itens no Bucket](itens-criados-no-bucket-24.jpeg)
+![\](assets/itens-criados-no-bucket-24.jpeg)
 
 *Prova física de que o fluxo funcionou:*
 - ✅ Usuário enviou requisição para Lambda Producer
@@ -274,7 +274,7 @@ Indo para o bucket S3, podemos ver os itens criados como mágica:
 
 No CloudWatch Live Tail, vimos o rastro em tempo real:
 
-![CloudWatch](cloudwatch-25.jpeg)
+![\](assets/cloudwatch-25.jpeg)
 
 *Todos os logs mostrando o sucesso de cada passo. Transparência total.*
 
@@ -374,3 +374,4 @@ A Área 51 não tinha chance.
 *Documentado com humor, café e muita criatividade. 🚀☕*
 
 *Escrito em dezembro de 2025, durante a operação "Fuga da Área 51".*
+
